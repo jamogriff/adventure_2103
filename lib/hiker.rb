@@ -7,4 +7,12 @@ class Hiker
     @snacks = {}
   end
 
+  def pack(snack, quantity)
+    if !@snacks[snack]
+      @snacks[snack] = quantity
+    else
+      @snacks[snack] += quantity
+    end
+  end
+
 end
