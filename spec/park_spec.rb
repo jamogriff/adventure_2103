@@ -46,5 +46,20 @@ RSpec.describe Park do
       expect(park1.hikeable_miles).to eq 7.5
       expect(park2.hikeable_miles).to eq 16.9
     end
+
+    it 'sorts trails by level' do
+      expected1 = {
+            :easy => ["Grand Wash"],
+            :moderate => ["Cohab Canyon"],
+            :strenuous => ["Chimney Rock Loop"]
+          }
+
+      expected2 = {
+            :moderate => ["Queen's/Navajo Loop", "Tower Bridge"],
+            :easy => ["Rim Trail"]
+          }
+      expect(park1.trails_by_level).to eq expected1
+      expect(park2.trails_by_level).to eq expected2
+    end
   end
 end
