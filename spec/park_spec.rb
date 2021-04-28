@@ -41,5 +41,10 @@ RSpec.describe Park do
       expected = [trail1, trail2]
       expect(park1.trails_shorter_than(2.5)).to eq expected
     end
+
+    it 'calculates hikable miles' do
+      expect(park1.hikeable_miles).to eq 7.5
+      expect(park2.hikeable_miles).to eq 16.9
+    end
   end
 end
