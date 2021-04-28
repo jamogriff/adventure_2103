@@ -41,4 +41,41 @@ RSpec.describe Hiker do
       expect(hiker.favorite_snack).to eq "trail mix"
     end
   end
+
+  describe 'iteration 4' do
+    trail1 = Trail.new({name: 'Rim Trail', length: '11 miles', level: :easy})
+    trail2 = Trail.new({name: "Queen's/Navajo Loop", length: '2.9 miles', level: :moderate})
+    trail3 = Trail.new({name: 'Tower Bridge', length: '3 miles', level: :moderate})
+    trail4 = Trail.new({name: 'Peekaboo Loop', length: '5.5 miles', level: :strenuous})
+    park = Park.new('Bryce Canyon')
+    park.add_trail(trail1)
+    park.add_trail(trail2)
+    park.add_trail(trail3)
+    park.add_trail(trail4)
+    hiker1 = Hiker.new('Dora', :moderate)
+    hiker2 = Hiker.new('Frank', :easy)
+    hiker3 = Hiker.new('Jack', :strenuous)
+    hiker4 = Hiker.new('Sally', :strenuous)
+    #This visit occurs on June 23, 1980
+    hiker1.visit(park)
+    #This visit occurs on June 24, 1980
+    hiker2.visit(park)
+    #This visit occurs on June 24, 1980
+    hiker3.visit(park)
+    #This visit occurs on June 25, 1980
+    hiker4.visit(park)
+    #This visit occurs on June 23, 2020
+    hiker1.visit(park)
+    #This visit occurs on June 24, 2020
+    hiker2.visit(park)
+    #This visit occurs on June 24, 2020
+    hiker3.visit(park)
+    #This visit occurs on June 25, 2020
+    hiker4.visit(park)
+
+    it 'does not count same park twice' do
+      expect(hiker1.parks_visited.length).to eq 1
+      expect(hiker2.parks_visited.length).to eq 1
+    end
+  end
 end
