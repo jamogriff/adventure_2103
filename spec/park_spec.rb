@@ -62,4 +62,36 @@ RSpec.describe Park do
       expect(park2.trails_by_level).to eq expected2
     end
   end
+
+  describe 'iteration 4' do
+    trail1 = Trail.new({name: 'Rim Trail', length: '11 miles', level: :easy})
+    trail2 = Trail.new({name: "Queen's/Navajo Loop", length: '2.9 miles', level: :moderate})
+    trail3 = Trail.new({name: 'Tower Bridge', length: '3 miles', level: :moderate})
+    trail4 = Trail.new({name: 'Peekaboo Loop', length: '5.5 miles', level: :strenuous})
+    park = Park.new('Bryce Canyon')
+    park.add_trail(trail1)
+    park.add_trail(trail2)
+    park.add_trail(trail3)
+    park.add_trail(trail4)
+    hiker1 = Hiker.new('Dora', :moderate)
+    hiker2 = Hiker.new('Frank', :easy)
+    hiker3 = Hiker.new('Jack', :strenuous)
+    hiker4 = Hiker.new('Sally', :strenuous)
+
+    it 'has a visitor log' do
+      park.add_visitor(hiker1, "1980", "06/23")
+      park.add_visitor(hiker2, "1980", "06/24")
+      park.add_visitor(hiker3, "1980", "06/24")
+      park.add_visitor(hiker4, "1980", "06/25")
+      park.add_visitor(hiker1, "2020", "06/23")
+      expected = {"1980" => {
+                            "06/23" => [hiker1],
+                            "06/24" => [hiker2, hiker3],
+                            "06/25" => [hiker4]},
+                  "2020" => {"06/23" => [hiker1]}
+                }
+      expect(park.visitors_log).to be_instance_of Hash
+      expect(park.visitors_log).to eq expected
+    end
+  end
 end

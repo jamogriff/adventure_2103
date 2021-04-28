@@ -1,13 +1,22 @@
 class Park
-  attr_reader :name, :trails
+  attr_reader :name, :trails, :visitors_log
 
   def initialize(name)
     @name = name
     @trails = []
+    @visitors_log = {}
   end
 
   def add_trail(trail)
     @trails << trail
+  end
+
+  def add_visitor(visitor, year, date)
+    if !@visitors_log[year]
+      @visitors_log[year] = {date => visitor}
+    else
+      @visitors_log[year][date] = visitor
+    end
   end
 
   def trails_shorter_than(number)
@@ -47,5 +56,6 @@ class Park
       trail.name
     end
   end
+
 
 end
