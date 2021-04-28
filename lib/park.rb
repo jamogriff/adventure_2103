@@ -10,4 +10,10 @@ class Park
     @trails << trail
   end
 
+  def trails_shorter_than(number)
+    @trails.select do |trail|
+      trail.length < number
+    end
+  end
+
 end
