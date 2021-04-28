@@ -30,4 +30,10 @@ class Hiker
     trails
   end
 
+  def favorite_snack
+    @snacks.max_by do |snack, quantity|
+      quantity
+    end[0] # index returns name only
+  end
+
 end

@@ -36,5 +36,9 @@ RSpec.describe Hiker do
     it 'lists possible trails' do
       expect(hiker.possible_trails).to eq [trail2]
     end
+
+    it 'knows favorite snack' do
+      expect(hiker.favorite_snack).to eq "trail mix"
+    end
   end
 end
